@@ -214,7 +214,7 @@ async def zametka_save(event):
 async def zametka_save(event):
     if event:
         time_now = datetime.datetime.now().strftime("%H:%M:%S")
-        await event.edit(f"время сейчас: {time_now} (часовой пояс МСК)")
+        await event.edit(f"время сейчас: {time_now}")
 
 # команды
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".команды"))
