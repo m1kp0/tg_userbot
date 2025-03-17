@@ -23,7 +23,7 @@ my.telegram.org
 ```
 
 ## бот юзает что
-* бот юзает telethon
+бот юзает telethon
 
 ## язык
-* Python
+Python
