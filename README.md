@@ -1,11 +1,11 @@
 # tg_userbot (not for use)
 
-api_id, api_hash on tg website - 
+## api_id, api_hash on tg website - 
 ```
 my.telegram.org
 ```
 
-команды:
+## команды:
 ```
 * .- - удаление сообщения. 
 * .пр (1, 2, 3) - привет. 
@@ -21,3 +21,9 @@ my.telegram.org
 * .см - переслать сообщение самому себе. 
 * .команды - все команды. 
 ```
+
+## бот юзает что
+* бот юзает telethon
+
+## язык
+* Python
