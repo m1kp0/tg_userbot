@@ -1,4 +1,4 @@
-# в боте есть ошибки, не юзайте
+# не юзайте бота тут ошибки
 
 # импорт
 from telethon import *
@@ -10,12 +10,12 @@ import os
 zametks = []
 
 # апи
-api_id = 1234567
-api_hash = "аррр"
+api_id = 25542343
+api_hash = "7a1eaa42fbce44a3afcf8b20449653d4"
 
 # бот
 m1kp = TelegramClient(
-    "session_1",
+    "session_36",
     api_id=api_id, 
     api_hash=api_hash
 )
@@ -176,13 +176,13 @@ async def zametka_save(event):
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".удалить_сейв"))
 async def zametka_delete(event):
     text = event.text.split()
-    reply = event.get_reply_message()
-    if event and text[1]:
-        zametks.remove(text[1])
-        await event.edit(f"удалено из сохранённых: {text[1]}")
-    elif event and reply:
+    reply = await event.get_reply_message()
+    if event and reply:
         zametks.remove(reply.text)
         await event.edit("удалено из сохранённых")
+    elif event and text[1]:
+        zametks.remove(text[1])
+        await event.edit(f"удалено из сохранённых: {text[1]}")
 
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".очистить_сейвы"))
 async def clear_zametks(event):
@@ -214,7 +214,7 @@ async def zametka_save(event):
 async def zametka_save(event):
     if event:
         time_now = datetime.datetime.now().strftime("%H:%M:%S")
-        await event.edit(f"время сейчас: {time_now}")
+        await event.edit(f"время сейчас: {time_now} (часовой пояс МСК)")
 
 # команды
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".команды"))
