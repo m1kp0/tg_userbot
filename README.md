@@ -1,6 +1,9 @@
 # tg_userbot (not for use)
 
-api_id, api_hash on tg website - ```my.telegram.org```
+api_id, api_hash on tg website - 
+```
+my.telegram.org
+```
 
 команды:
 ```
