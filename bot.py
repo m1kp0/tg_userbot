@@ -181,7 +181,7 @@ async def zametka_delete(event):
         zametks.remove(text[1])
         await event.edit(f"удалено из сохранённых: {text[1]}")
     elif event and reply:
-        zametks.remove(reply)
+        zametks.remove(reply.text)
         await event.edit("удалено из сохранённых")
 
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".очистить_сейвы"))
