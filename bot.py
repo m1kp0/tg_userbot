@@ -10,8 +10,8 @@ import random
 zametks = []
 
 # апи
-api_id = 25542343
-api_hash = "7a1eaa42fbce44a3afcf8b20449653d4"
+api_id = 777
+api_hash = "я крутой"
 
 # бот
 m1kp = TelegramClient(
