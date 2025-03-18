@@ -1,10 +1,10 @@
-# не юзайте бота тут ошибки
+# в боте есть ошибки, этой надписи не будет когда я все пофикшу
 
 # импорт
 from telethon import *
 import datetime
 import time
-import os
+import random
 
 # переменные
 zametks = []
@@ -15,7 +15,7 @@ api_hash = "7a1eaa42fbce44a3afcf8b20449653d4"
 
 # бот
 m1kp = TelegramClient(
-    "session_36",
+    "session_40",
     api_id=api_id, 
     api_hash=api_hash
 )
@@ -37,7 +37,7 @@ async def delete_msg(event):
 # пр
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".пр"))
 async def pr(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=1)
     if event and text[1] == "1":
         await event.edit("П")
         time.sleep(0.1)
@@ -127,7 +127,7 @@ async def dislike(event):
 # скрипты
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".скрипт"))
 async def script(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=1)
     if event and text[1]:
         if text[1] == "лб":
             await event.edit("loadstring(game:HttpGet('https://raw.githubusercontent.com/m1kp0/DMO/refs/heads/main/ladder_breaker.lua'))()") # ладдер бреакер дмо
@@ -151,11 +151,11 @@ async def script(event):
 # спам
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".спам"))
 async def spam(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=2)
     if event and text[1] and text[2]:
         await event.edit("спам...")
-        for i in range(int(text[2])):
-            await m1kp.send_message(event.chat_id, text[1])
+        for i in range(int(text[1])):
+            await m1kp.send_message(event.chat_id, text[2])
             time.sleep(0.1)
         
         await event.delete()
@@ -164,7 +164,7 @@ async def spam(event):
 # заметки функции
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".сейв"))
 async def zametka_save(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=1)
     reply = await event.get_reply_message()
     if event and reply:
         zametks.append(reply.text)
@@ -175,7 +175,7 @@ async def zametka_save(event):
 
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".удалить_сейв"))
 async def zametka_delete(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=1)
     reply = await event.get_reply_message()
     if event and reply:
         zametks.remove(reply.text)
@@ -186,7 +186,7 @@ async def zametka_delete(event):
 
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".очистить_сейвы"))
 async def clear_zametks(event):
-    text = event.text.split()
+    text = event.text.split(sep=None, maxsplit=1)
     if event:
         zametks.clear()
         await event.edit("удалены все сохранённые сообщения")
@@ -214,13 +214,22 @@ async def zametka_save(event):
 async def zametka_save(event):
     if event:
         time_now = datetime.datetime.now().strftime("%H:%M:%S")
-        await event.edit(f"время сейчас: {time_now} (часовой пояс МСК)")
+        await event.edit(f"время сейчас: {time_now}")
+
+# процент
+@m1kp.on(events.NewMessage(outgoing=True, pattern=r".процент"))
+async def gay(event):
+    text = event.text.split(sep=None, maxsplit=2)
+    if event and text[1] and text[2]:
+        await event.edit("я думаю..")
+        time.sleep(random.randint(1, 4))
+        await event.edit(f"я думаю, {text[1]} {text[2]} на {random.randint(0, 100)}%")
 
 # команды
 @m1kp.on(events.NewMessage(outgoing=True, pattern=r".команды"))
 async def zametka_save(event):
     if event:
-        await event.edit(".- - удаление сообщения\n.пр (1, 2, 3) - привет\n.жди - просит собеседника подождать\n.во - лайк\n.нево - дизлайк\n.скрипт (лб, лбв6, чатбайпасс, иур, патх, лбб, фриадмин, тох) - даёт скрипт\n.сейв - сохраняет сообщение\n.удалить_сейв - удалить сейв\n.очистить_сейвы - очистить сейвы\n.сейвы - показывает все сохранённые сообщения\n.время - точное время сейчас\n.см - переслать сообщение самому себе\n.команды - все команды")
+        await event.edit(".- - удаление сообщения\n.пр (1, 2, 3) - привет\n.жди - просит собеседника подождать\n.во - лайк\n.нево - дизлайк\n.скрипт (лб, лбв6, чатбайпасс, иур, патх, лбб, фриадмин, тох) - даёт скрипт\n.сейв - сохраняет сообщение\n.удалить_сейв - удалить сейв\n.очистить_сейвы - очистить сейвы\n.сейвы - показывает все сохранённые сообщения\n.время - точное время сейчас\n.см - переслать сообщение самому себе\n.процент - рандомное число (например .процент я гей)\n.команды - все команды")
 
 # старт
 m1kp.start()
